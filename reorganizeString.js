@@ -17,8 +17,8 @@ S will consist of lowercase letters and have length in range [1, 500].
 */
 
 var reorganizeString = function(S) {
+  console.log(S.length);
   var letters = {};
-  var temp;
   var current = '';
   var result = '';
   for (i of S) {
@@ -30,34 +30,52 @@ var reorganizeString = function(S) {
   }
   letters = Object.entries(letters);
   letters.sort((a, b) => b[1] - a[1]);
-  letters = letters.map((s) => s[0].repeat(s[1])).join('').split('');
-  console.log(letters.join(''));
-  while (letters.length > 1) {
-    temp = letters.shift();
-    // if (temp === current) return '';
-    result += temp;
-    current = temp;
-    if (letters.length > 1) {
-      temp = letters.pop();
-      // if (temp === current) return '';
-      result += temp;
-      current = temp;
+  console.log(JSON.stringify(letters));
+  while (letters.length) {
+    if (letters[0][0] !== current) {
+      result += letters[0][0];
+      current = letters[0][0];
+      if (!--letters[0][1]) letters.shift();
+    } else {
+      if (letters[1] !== undefined) {
+        result += letters[1][0];
+        current = letters[1][0];
+        if (!--letters[1][1]) letters.splice(1, 1);
+      } else {
+        // console.log(result.length);
+        // return result;
+        var prev = '';
+        var found = false;
+        for (var i = 0; i < result.length; i++) {
+          prev = result[i-1] || '';
+
+          if (letters[0][0] !== result[0] && letters[0][0] !== prev) {
+            
+            result = result.slice(i - 1, i) + letters[0][0] + result.slice(i);
+            if (!--letters[0][1]) letters.shift();
+            found = true;
+          }
+          
+        }
+        if (!found) {
+          console.log(result, result.length);
+          console.log(JSON.stringify(letters));
+          return 'not found';
+        }
+
+
+      }
     }
   }
-  console.log(result);
-  console.log(letters);
-  if (letters[0] === result[0] && letters[0] === result[result.length - 1]) {
-    // for (var i = 0; i < result.length; i++)
-    return '';
-  }
-  if (letters[0] === result[0]) return result + letters[0];
-  return letters[0] + result;
+  // console.log(result.length);
+  return result;
 }
 
 
-// console.log(reorganizeString('aaab'));
+//  console.log(reorganizeString('aaab'));
 // console.log(reorganizeString('aab'));
 // console.log(reorganizeString('vvvlo'));
 // console.log(reorganizeString('blflxll'));
 // console.log(reorganizeString('ogccckcwmbmxtsbmozli'));
-console.log(reorganizeString('nlmxhnpifuaxinxpxlcttjnlggmkjioewbecnofqpvcikiazmn'));
+// console.log(reorganizeString('nlmxhnpifuaxinxpxlcttjnlggmkjioewbecnofqpvcikiazmn'));
+console.log(reorganizeString('tndsewnllhrtwsvxenkscbivijfqnysamckzoyfnapuotmdexzkkrpmppttficzerdndssuveompqkemtbwbodrhwsfpbmkafpwyedpcowruntvymxtyyejqtajkcjakghtdwmuygecjncxzcxezgecrxonnszmqmecgvqqkdagvaaucewelchsmebikscciegzoiamovdojrmmwgbxeygibxxltemfgpogjkhobmhwquizuwvhfaiavsxhiknysdghcawcrphaykyashchyomklvghkyabxatmrkmrfsppfhgrwywtlxebgzmevefcqquvhvgounldxkdzndwybxhtycmlybhaaqvodntsvfhwcuhvuccwcsxelafyzushjhfyklvghpfvknprfouevsxmcuhiiiewcluehpmzrjzffnrptwbuhnyahrbzqvirvmffbxvrmynfcnupnukayjghpusewdwrbkhvjnveuiionefmnfxao'));
