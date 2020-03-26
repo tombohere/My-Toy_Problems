@@ -15,7 +15,6 @@ function fizzbuzz() {
 function fizzbuzz2() {
   for(var i = 1; i <= 100; i++) {
     console.log((i % 3 ? '' : 'Fizz') + (i % 5 ? '' : 'Buzz') || i);
-    //console.log(((['Fizz'][i % 3] || '') + (['Buzz'][i % 5] || '')) || i);
   }
 }
 
