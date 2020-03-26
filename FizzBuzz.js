@@ -5,19 +5,10 @@
 
 function fizzbuzz() {
   for(var i = 1; i <= 100; i++) {
-    if (i % 3 === 0 && i % 5 === 0) {
-      console.log('FizzBuzz');
-      continue;
-    }
-    if (i % 3 === 0) {
-      console.log('Fizz');
-      continue;
-    }
-    if (i % 5 === 0) {
-      console.log('Buzz');
-      continue;
-    }
-    console.log(i);
+    if (i % 15 === 0) console.log('FizzBuzz');
+    else if (i % 3 === 0) console.log('Fizz');
+    else if (i % 5 === 0) console.log('Buzz');
+    else console.log(i);
   }
 }
 
@@ -28,4 +19,10 @@ function fizzbuzz2() {
   }
 }
 
-fizzbuzz2();
+var fizzbuzz3 = function(n, i) {
+  if (i > n) return;
+  console.log((i % 3 ? '' : 'Fizz') + (i % 5 ? '' : 'Buzz') || i);
+  fizzbuzz3(n, i + 1);
+};
+
+fizzbuzz();
