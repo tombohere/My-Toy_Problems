@@ -69,5 +69,15 @@ var maxProfit = function(prices, fee) {
   return maxProfit;
 };
 
-console.log(maxProfit([1,3,2,8,4,9], 2)); // 8
-console.log(maxProfit([1,3,7,5,10,3], 3)); // 6
+var maxProfit2 = function(prices, fee) {
+  var stock = Number.MIN_SAFE_INTEGER;
+  var cash = 0;
+  for (var price of prices) {
+      stock = Math.max(stock, cash - price);
+      cash = Math.max(cash, stock + price - fee);
+  }
+  return cash;
+}
+
+console.log(maxProfit2([1,3,2,8,4,9], 2)); // 8
+console.log(maxProfit2([1,3,7,5,10,3], 3)); // 6
