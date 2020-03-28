@@ -56,11 +56,11 @@ The given board size is always 9x9.
 var isValidSudoku = function (board) {
   var temp;
   for (var i = 0; i < 9; i++) {
-    temp = board[i].join('').split('.').join('');
+    temp = (board[i] + '').replace(/[.,]/g, '');
     if (temp.length !== (new Set(temp)).size) return false;
-    temp = board.map(s => s[i]).join('').split('.').join('');
+    temp = (board.map(s => s[i]) + '').replace(/[.,]/g, '');
     if (temp.length !== (new Set(temp)).size) return false;
-    temp = board.slice(i - i % 3, i - i % 3 + 3).map(s => s.slice(i % 3 * 3, i % 3 * 3 + 3)).join('').split(',').join('').split('.').join('');
+    temp = (board.slice(i - i % 3, i - i % 3 + 3).map(s => s.slice(i % 3 * 3, i % 3 * 3 + 3)) + '').replace(/[.,]/g, '');
     if (temp.length !== (new Set(temp)).size) return false;
   }
   return true;
@@ -90,7 +90,7 @@ board = [
   [".", ".", ".", "4", "1", "9", ".", ".", "5"],
   [".", ".", ".", ".", "8", ".", ".", "7", "9"]
 ];
-console.log(isValidSudoku(board));
+// console.log(isValidSudoku(board));
 
 board = [
   [".", ".", ".", ".", "5", ".", ".", "1", "."],
@@ -103,4 +103,4 @@ board = [
   [".", "2", ".", "9", ".", ".", ".", ".", "."],
   [".", ".", "4", ".", ".", ".", ".", ".", "."]
 ]
-console.log(isValidSudoku(board));
+// console.log(isValidSudoku(board));
