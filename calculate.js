@@ -31,15 +31,12 @@ Do not use the eval built-in library function.
  */
 var calculate = function(s) {
   var t;
-  var num; 
-  var str = s.replace(/ /g, '');
-  while (t = str.match(/([0-9]+)([\/\*])([0-9]+)/)) {
-    num = t[2] === '/' ? Math.floor((t[1] - 0) / (t[3] - 0)) : (t[1] - 0) * (t[3] - 0);
-    str = str.replace(t[0], num + '');
+  var str = s.replace(/\s/g, '');
+  while (t = str.match(/(\d+)([\/\*])(\d+)/)) {
+    str = str.replace(t[0], t[2] === '/' ? Math.floor(t[1] / t[3]) : t[1] * t[3]);
   }
-  while (t = str.match(/(-?[0-9]+)([\-\+])([0-9]+)/)) {
-    num =  t[2] === '-' ? ((t[1] - 0) - (t[3] - 0)) : ((t[1] - 0) + (t[3] - 0));
-    str = str.replace(t[0], num + '');
+  while (t = str.match(/(-?\d+)([\-\+])(\d+)/)) {
+    str = str.replace(t[0], t[2] === '-' ? t[1] - t[3] : (t[1] - 0) + (t[3] - 0));
   }
   return str;
 };
