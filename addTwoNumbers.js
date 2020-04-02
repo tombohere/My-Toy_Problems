@@ -26,7 +26,6 @@ Explanation: 342 + 465 = 807.
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
-  
   var value = l1.val + l2.val;
   var carry;
   if (value > 9) {
