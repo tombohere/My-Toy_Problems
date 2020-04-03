@@ -63,6 +63,7 @@ var isHappy2 = function(n) {
 };
 
 
+
 var d =(new Date()).getTime();
 var count = 0;
 for (var i = 0; i < 10000000; i++) {
