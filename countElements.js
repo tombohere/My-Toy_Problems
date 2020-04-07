@@ -59,7 +59,7 @@ var countElements = function(arr) {
 
 var countElements = function(arr) {
   let set = new Set(arr);
-  return arr.reduce((c, i) => c + (set.has(i + 1) ? 1 : 0), 0);
+  return arr.reduce((c, i) => set.has(i + 1) ? c + 1 : c, 0);
 };
 
 
