@@ -39,12 +39,21 @@ Constraints:
  */
 var countElements = function(arr) {
   var count = 0;
-  var sarr = arr.sort((a, b) => a - b);
-  var cur;
+  var sarr = arr.sort((a, b) => b - a);
+  var cur, i;
   while (sarr.length) {
-    cur = sarr.shift();
-    if (sarr.includes(cur + 1)) count++;
+    cur = sarr.pop();
+    i = sarr.length - 1;
+    while (sarr[i] === cur) i--;
+    if (sarr[i] === cur + 1) count++;
   }
+  return count;
+};
+
+var countElements = function(arr) {
+  let count = 0;
+  let set = new Set(arr);
+  arr.forEach(i => set.has(i + 1) ? count++ : undefined );
   return count;
 };
 
@@ -52,4 +61,4 @@ console.log(countElements([1,2,3])); // 2
 console.log(countElements([1,1,3,3,5,5,7,7])); // 0
 console.log(countElements([1,3,2,3,5,0])); // 3
 console.log(countElements([1,1,2,2])); // 2
-console.log(countElements([4,10,11,11,1,9,6,2,4,5,8])); // 2
+console.log(countElements([4,10,11,11,1,9,6,2,4,5,8])); // 7
