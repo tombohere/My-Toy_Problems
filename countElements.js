@@ -57,6 +57,13 @@ var countElements = function(arr) {
   return count;
 };
 
+var countElements = function(arr) {
+  let set = new Set(arr);
+  return arr.reduce((c, i) => c + (set.has(i + 1) ? 1 : 0), 0);
+};
+
+
+
 console.log(countElements([1,2,3])); // 2
 console.log(countElements([1,1,3,3,5,5,7,7])); // 0
 console.log(countElements([1,3,2,3,5,0])); // 3
