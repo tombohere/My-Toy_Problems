@@ -53,7 +53,9 @@ var countElements = function(arr) {
 var countElements = function(arr) {
   let count = 0;
   let set = new Set(arr);
-  arr.forEach(i => set.has(i + 1) ? count++ : undefined );
+  arr.forEach(i => {
+    if (set.has(i + 1)) count++;
+  });
   return count;
 };
 
@@ -61,8 +63,6 @@ var countElements = function(arr) {
   let set = new Set(arr);
   return arr.reduce((c, i) => set.has(i + 1) ? c + 1 : c, 0);
 };
-
-
 
 console.log(countElements([1,2,3])); // 2
 console.log(countElements([1,1,3,3,5,5,7,7])); // 0
