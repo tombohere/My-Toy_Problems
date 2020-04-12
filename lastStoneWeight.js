@@ -34,9 +34,12 @@ Note:
 var lastStoneWeight = function(stones) {
   while (stones.length > 1) {
     stones = stones.sort((a, b) => a - b);
-    let stone1 = stones.pop();
-    let stone2 = stones.pop();
-    if (stone1 !== stone2) stones.push(stone1 - stone2);
+    let diff = stones.pop() - stones[stones.length - 1];
+    if (diff) {
+      stones[stones.length - 1] = diff
+    } else {
+      stones.pop();
+    }
   }
   return stones.length ? stones[0] : 0;
 };
