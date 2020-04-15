@@ -43,17 +43,17 @@ shift[i].length == 2
  * @return {string}
  */
 var stringShift = function(s, shift) {
-  let shiftAmt = 0;
-  for(let g of shift) {
-    shiftAmt += g[0] ? -g[1] : g[1];
+  let i = 0;
+  for(let [d, n] of shift) {
+    i += d ? -n : n;
   }
-  shiftAmt %= s.length;
-  return s.slice(shiftAmt) + s.slice(0, shiftAmt);
+  i %= s.length;
+  return s.slice(i) + s.slice(0, i);
 };
 
 var stringShift = function(s, shift) {
-  let shiftAmt = shift.reduce((a, [d, n]) => a + (d ? -n : n), 0) % s.length;
-  return s.slice(shiftAmt) + s.slice(0, shiftAmt);
+  let i = shift.reduce((a, [d, n]) => a += d ? -n : n, 0) % s.length;
+  return s.slice(i) + s.slice(0, i);
 };
 
 console.log(stringShift("abc", [[0,1],[1,2]]));
