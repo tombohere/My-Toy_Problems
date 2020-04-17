@@ -23,7 +23,7 @@ var productExceptSelf = function(nums) {
   let amt = 1;
   for (let num of nums) {
     result.push(amt);
-     amt *= num;
+    amt *= num;
   }
   console.log(result);
   amt = 1;
