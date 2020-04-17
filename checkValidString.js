@@ -88,7 +88,7 @@ var checkValidString = function(s) {
       }        
   }
   console.log(JSON.stringify(charMap));
-  return true; 
+  return true;
 };
 
 // console.log(checkValidString("(*"));            // true
