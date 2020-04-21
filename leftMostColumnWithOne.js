@@ -10,3 +10,12 @@ var leftMostColumnWithOne = function(binaryMatrix) {
   }
   return y < yLen - 1 ? ++y : -1;
 };
+
+var leftMostColumnWithOne = function(binaryMatrix) {
+  let [x, y] = binaryMatrix.dimensions();
+  let y1 = y;
+  while (x && y) {
+    binaryMatrix.get(x - 1, y - 1) ? y-- : x--;
+  }
+  return y < y1 ? y : -1;
+};
