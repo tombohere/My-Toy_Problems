@@ -37,4 +37,4 @@ var subarraySum = function(nums, k) {
   return result;
 };
 
-console.log(subarraySum([1,1,1,2], 2)); // 2
+console.log(subarraySum([1,1,1,2], 3)); // 2
